@@ -25,3 +25,17 @@ services:
       - ~/plex/config:/config
       - ~/plex/transcode:/transcode
       - ~/plex/data:/data
+  transmission:
+    container_name: transmission
+    image: haugene/transmission-openvpn
+    restart: unless-stopped
+    ports:
+      - 9091:9091
+    environment:
+      - OPENVPN_PROVIDER=${OPENVPN_PROVIDER}
+      - OPENVPN_CONFIG=${OPENVPN_CONFIG}
+      - OPENVPN_USERNAME=${OPENVPN_USERNAME}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+    volumes:
+      - ~/plex/data:/data
+      - /etc/localtime:/etc/localtime:ro
