@@ -44,7 +44,7 @@ services:
       - TZ=Europe/Paris
     volumes:
       - ~/transmission/config:/config
-      - ~/transmission/downloads:/downloads
+      - /mnt/downloads:/downloads
       - ~/transmission/watch:/watch
   lidarr:
     container_name: lidarr
@@ -57,7 +57,7 @@ services:
       - PUID=${LIDARR_PUID}
     volumes:
       - ~/lidarr/data:/config
-      - ~/transmission/downloads:/downloads
+      - /mnt/downloads:/downloads
       - ~/plex/music:/music
   radarr:
     container_name: radarr
@@ -71,7 +71,7 @@ services:
       - PUID=${RADARR_PUID}
     volumes:
       - ~/radarr/config:/config
-      - ~/transmission/downloads:/downloads
+      - /mnt/downloads:/downloads
       - /mnt/movies:/movies
       - /etc/localtime:/etc/localtime:ro
   jackett:
