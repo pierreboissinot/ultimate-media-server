@@ -59,3 +59,17 @@ services:
       - ~/lidarr/data:/config
       - ~/lidarr/downloads:/downloads
       - ~/plex/music:/music
+  jackett:
+    container_name: jackett
+    image: linuxserver/jackett
+    restart: unless-stopped
+    ports:
+      - 9117:9117
+    environment:
+      - PGID=${JACKETT_PGID}
+      - PUID=${JACKETT_PUID}
+      - TZ=Europe/Paris
+    volumes:
+      - ~/jackett/data:/config
+      - ~/jackett/blackhole:/downloads
+      - /etc/localtime:/etc/localtime:ro
