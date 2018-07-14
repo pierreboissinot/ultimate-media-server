@@ -26,7 +26,7 @@ services:
       - ~/plex/config:/config
       - ~/plex/transcode:/transcode
       - ~/plex/data:/data
-      - ~/plex/movies:/movies
+      - /mnt/movies:/movies
       - ~/plex/tvshows:/tvshows
       - ~/plex/music:/music
       - ~/plex/photos:/photos
@@ -72,7 +72,7 @@ services:
     volumes:
       - ~/radarr/config:/config
       - ~/transmission/downloads:/downloads
-      - ~/plex/movies:/movies
+      - /mnt/movies:/movies
       - /etc/localtime:/etc/localtime:ro
   jackett:
     container_name: jackett
