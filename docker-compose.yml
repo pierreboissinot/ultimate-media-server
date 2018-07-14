@@ -73,7 +73,7 @@ services:
       - ~/radarr/config:/config
       - ~/transmission/downloads:/downloads
       - ~/plex/movies:/movies
-      - ~/etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
   jackett:
     container_name: jackett
     image: linuxserver/jackett
