@@ -40,6 +40,11 @@ services:
     volumes:
       - ~/plex/data:/data
       - /etc/localtime:/etc/localtime:ro
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+  proxy:
+    container_name: proxy
+    image: haugene/transmission-openvpn-proxy
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    links:
+      - transmission:transmission
