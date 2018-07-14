@@ -59,6 +59,21 @@ services:
       - ~/lidarr/data:/config
       - ~/transmission/downloads:/downloads
       - ~/plex/music:/music
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr
+    restart: unless-stopped
+    ports:
+      - 7878:7878
+    environment:
+      - TZ=Europe/Paris
+      - PGID=${RADARR_PGID}
+      - PUID=${RADARR_PUID}
+    volumes:
+      - ~/radarr/config:/config
+      - ~/transmission/downloads:/downloads
+      - ~/plex/movies:/movies
+      - ~/etc/localtime:/etc/localtime:ro
   jackett:
     container_name: jackett
     image: linuxserver/jackett
