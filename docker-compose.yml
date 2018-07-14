@@ -57,7 +57,7 @@ services:
       - PUID=${LIDARR_PUID}
     volumes:
       - ~/lidarr/data:/config
-      - ~/lidarr/downloads:/downloads
+      - ~/transmission/downloads:/downloads
       - ~/plex/music:/music
   jackett:
     container_name: jackett
