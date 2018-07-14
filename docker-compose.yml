@@ -27,24 +27,16 @@ services:
       - ~/plex/data:/data
   transmission:
     container_name: transmission
-    image: haugene/transmission-openvpn
+    image: linuxserver/transmission
     restart: unless-stopped
-    privileged: true
     ports:
       - 9091:9091
+      - 51413:51413
     environment:
-      - OPENVPN_PROVIDER=${OPENVPN_PROVIDER}
-      - OPENVPN_CONFIG=${OPENVPN_CONFIG}
-      - OPENVPN_USERNAME=${OPENVPN_USERNAME}
-      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+      - PGID=${TRANSMISSION_PGID}
+      - PUID=${TRANSMISSION_PUID}
+      - TZ=Europe/Paris
     volumes:
-      - ~/plex/data:/data
-      - /etc/localtime:/etc/localtime:ro
-  proxy:
-    container_name: proxy
-    image: haugene/transmission-openvpn-proxy
-    restart: unless-stopped
-    ports:
-      - 8080:8080
-    links:
-      - transmission:transmission
+      - ~/transmission/config:/config
+      - ~/transmission/downloads:/downloads
+      - ~/transmission/watch:/watch
