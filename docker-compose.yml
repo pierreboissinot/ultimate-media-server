@@ -20,6 +20,6 @@ services:
       - ADVERTISE_IP="${PLEX_ADVERTISE_IP}"
     hostname: <hostname>
     volumes:
-      - ./plex/config:/config
-      - ./plex/transcode:/transcode
-      - ./plex/data:/data
+      - ~/plex/config:/config
+      - ~/plex/transcode:/transcode
+      - ~/plex/data:/data
