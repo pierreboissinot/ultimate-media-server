@@ -26,6 +26,7 @@ services:
       - ~/plex/config:/config
       - ~/plex/transcode:/transcode
       - ~/plex/data:/data
+      - ~/plex/media:/media
   transmission:
     container_name: transmission
     image: linuxserver/transmission
