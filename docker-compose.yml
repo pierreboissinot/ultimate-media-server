@@ -46,3 +46,16 @@ services:
       - ~/transmission/config:/config
       - ~/transmission/downloads:/downloads
       - ~/transmission/watch:/watch
+  lidarr:
+    container_name: lidarr
+    image: linuxserver/lidarr
+    restart: unless-stopped
+    ports:
+      - 8686:8686
+    environment:
+      - PGID=${LIDARR_PGID}
+      - PUID=${LIDARR_PUID}
+    volumes:
+      - ~/lidarr/data:/config
+      - ~/lidarr/downloads:/downloads
+      - ~/plex/music:/music
