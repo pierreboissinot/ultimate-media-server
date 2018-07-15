@@ -26,7 +26,7 @@ services:
       - ~/plex/config:/config
       - ~/plex/transcode:/transcode
       - ~/plex/data:/data
-      - /mnt/movies:/movies
+      - ~/plex/movies:/movies
       - ~/plex/tvshows:/tvshows
       - ~/plex/music:/music
       - ~/plex/photos:/photos
@@ -57,7 +57,7 @@ services:
       - TZ=Europe/Paris
     volumes:
       - ~/transmission/config:/config
-      - /mnt/downloads:/downloads
+      - ~/transmission/downloads:/downloads
       - ~/transmission/watch:/watch
   lidarr:
     container_name: lidarr
@@ -70,7 +70,7 @@ services:
       - PUID=${UID}
     volumes:
       - ~/lidarr/data:/config
-      - /mnt/downloads:/downloads
+      - ~/transmission/downloads:/downloads
       - ~/plex/music:/music
   radarr:
     container_name: radarr
@@ -84,9 +84,24 @@ services:
       - PUID=${UID}
     volumes:
       - ~/radarr/config:/config
-      - /mnt/downloads:/downloads
-      - /mnt/movies:/movies
+      - ~/transmission/downloads:/downloads
+      - ~/plex/movies:/movies
       - /etc/localtime:/etc/localtime:ro
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=Europe/Paris
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ~/sonarr/config:/config
+      - ~/plex/tvshows:/tv
+      - ~/transmission/downloads:/downloads
   jackett:
     container_name: jackett
     image: linuxserver/jackett
@@ -94,8 +109,8 @@ services:
     ports:
       - 9117:9117
     environment:
-      - PGID=${JACKETT_PGID}
-      - PUID=${JACKETT_PUID}
+      - PGID=${GID}
+      - PUID=${UID}
       - TZ=Europe/Paris
     volumes:
       - ~/jackett/data:/config
