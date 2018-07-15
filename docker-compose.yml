@@ -31,6 +31,19 @@ services:
       - ~/plex/music:/music
       - ~/plex/photos:/photos
       - ~/plex/othervideos:/othervideos
+  tautulli:
+    container_name: tautulli
+    image: linuxserver/tautulli
+    restart: unless-stopped
+    ports:
+      - 8181:8181
+    environment:
+      - PGID=${GID}
+      - PUID=${UID}
+      - TZ=Europe/Paris
+    volumes:
+      - ~/tautulli/config:/config
+      - ~/plex/Library/Application Support/Plex Media Server/Logs:/logs:ro
   transmission:
     container_name: transmission
     image: linuxserver/transmission
