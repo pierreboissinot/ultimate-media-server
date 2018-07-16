@@ -74,6 +74,21 @@ services:
       - ~/transmission/downloads:/downloads
       - ~/plex/movies:/movies
       - /etc/localtime:/etc/localtime:ro
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr
+    restart: unless-stopped
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=Europe/Paris
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ~/sonarr/config:/config
+      - ~/plex/tvshows:/tv
+      - ~/transmission/downloads:/downloads
   jackett:
     container_name: jackett
     image: linuxserver/jackett
