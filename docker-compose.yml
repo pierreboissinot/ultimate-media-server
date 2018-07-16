@@ -81,8 +81,8 @@ services:
     ports:
       - 9117:9117
     environment:
-      - PGID=${JACKETT_PGID}
-      - PUID=${JACKETT_PUID}
+      - PGID=${PGID}
+      - PUID=${PUID}
       - TZ=Europe/Paris
     volumes:
       - ~/jackett/data:/config
