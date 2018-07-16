@@ -26,7 +26,7 @@ services:
       - ~/plex/config:/config
       - ~/plex/transcode:/transcode
       - ~/plex/data:/data
-      - /mnt/movies:/movies
+      - ~/plex/movies:/movies
       - ~/plex/tvshows:/tvshows
       - ~/plex/music:/music
       - ~/plex/photos:/photos
@@ -44,7 +44,7 @@ services:
       - TZ=Europe/Paris
     volumes:
       - ~/transmission/config:/config
-      - /mnt/downloads:/downloads
+      - ~/transmission/downloads:/downloads
       - ~/transmission/watch:/watch
   lidarr:
     container_name: lidarr
@@ -57,7 +57,7 @@ services:
       - PUID=${UID}
     volumes:
       - ~/lidarr/data:/config
-      - /mnt/downloads:/downloads
+      - ~/transmission/downloads:/downloads
       - ~/plex/music:/music
   radarr:
     container_name: radarr
@@ -71,8 +71,8 @@ services:
       - PUID=${UID}
     volumes:
       - ~/radarr/config:/config
-      - /mnt/downloads:/downloads
-      - /mnt/movies:/movies
+      - ~/transmission/downloads:/downloads
+      - ~/plex/movies:/movies
       - /etc/localtime:/etc/localtime:ro
   jackett:
     container_name: jackett
